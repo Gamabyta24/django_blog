@@ -17,8 +17,11 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#">Пользователи</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Выход</a></li>
                     {% if user.is_authenticated %}
+                        <form action="{% url 'logout' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-link nav-link">Выход</button>
+                        </form>
                         <li class="nav-item"><a class="nav-link" href="#">1</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">2</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">3</a></li>
