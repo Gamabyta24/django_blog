@@ -30,3 +30,10 @@ class UserLoginView(LoginView):
     def form_valid(self, form):
         messages.success(self.request, "You are logged in")
         return super().form_valid(form)
+
+class UserLogoutView(LogoutView):
+    next_page = reverse_lazy("register")
+
+    def dispatch(self, request, *args, **kwargs):
+        messages.info(request, "You are logged out")
+        return super().dispatch(request, *args, **kwargs)
