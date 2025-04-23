@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     'django_blog',
     'django_blog.users',
+    'django_blog.posts',
+    'django_blog.tags',
+    'django_blog.categories',
 ]
 
 MIDDLEWARE = [
