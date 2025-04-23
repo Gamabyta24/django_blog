@@ -16,10 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from .views import index
+from .views import PostListView , UniversalDeleteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',index,name='index'),
+    path('', PostListView.as_view(), name='home'),
+    path('page/<int:page>/', PostListView.as_view(), name='posts_paginated'),
     path('users/',include('django_blog.users.urls')),
+    path('tags/',include('django_blog.tags.urls')),
+    path('posts/',include('django_blog.posts.urls')),
+    path('categories/',include('django_blog.categories.urls')),
+    path('delete/<str:model_name>/<int:pk>/', UniversalDeleteView.as_view(), name='universal_delete'),
 ]
