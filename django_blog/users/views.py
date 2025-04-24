@@ -25,14 +25,14 @@ class UserCreateView(CreateView):
 class UserLoginView(LoginView):
     form_class = AuthenticationForm
     template_name = "users/login.html"
-    next_page = reverse_lazy("index")
+    next_page = reverse_lazy("home")
 
     def form_valid(self, form):
         messages.success(self.request, "You are logged in")
         return super().form_valid(form)
 
 class UserLogoutView(LogoutView):
-    next_page = reverse_lazy("register")
+    next_page = reverse_lazy("home")
 
     def dispatch(self, request, *args, **kwargs):
         messages.info(request, "You are logged out")
