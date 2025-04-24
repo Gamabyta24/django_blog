@@ -2,7 +2,7 @@ build:
 	./build.sh
 
 render-start:
-	gunicorn task_manager.wsgi
+	gunicorn django_blog.wsgi
 
 install:
 	uv sync
