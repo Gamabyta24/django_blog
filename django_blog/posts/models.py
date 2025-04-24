@@ -22,7 +22,8 @@ class Post(models.Model):
 
     category = models.ForeignKey(
         Category,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        null=True,
         related_name="posts",
         verbose_name="Категория"
     )
