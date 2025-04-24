@@ -1,0 +1,127 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa;
+}
+
+main {
+    flex: 1;
+}
+
+.navbar {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
+    border: none;
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    border-top-left-radius: 0.5rem !important;
+    border-top-right-radius: 0.5rem !important;
+    font-weight: 600;
+}
+
+.card-title a {
+    color: #212529;
+    text-decoration: none;
+}
+
+.card-title a:hover {
+    color: #0d6efd;
+}
+
+.badge {
+    font-weight: 500;
+}
+
+.list-group-item {
+    border-left: none;
+    border-right: none;
+}
+
+.list-group-item:first-child {
+    border-top: none;
+}
+
+.page-link {
+    color: #0d6efd;
+}
+
+.page-item.active .page-link {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+
+/* Стили для формы авторизации */
+.form-group label {
+    font-weight: 500;
+}
+
+/* Стили для таблиц */
+.table {
+    margin-bottom: 0;
+}
+
+.table a {
+    text-decoration: none;
+}
+
+/* Анимация для сообщений */
+.alert {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Основные стили для футера */
+.site-footer {
+    padding: 20px; /* Внутренние отступы */
+    text-align: center; /* Центрирование текста */
+    margin-top: 40px; /* Отступ сверху */
+    font-family: 'Arial', sans-serif; /* Современный шрифт */
+    border-top: 1px solid #ccc; /* Легкая граница сверху для разделения */
+}
+
+/* Стили для содержимого футера */
+.footer-content {
+    max-width: 1200px; /* Ограничение ширины */
+    margin: 0 auto; /* Центрирование по горизонтали */
+}
+
+/* Стили для ссылок */
+.step-links a {
+    color: #007BFF; /* Яркий синий цвет для ссылок */
+    text-decoration: none; /* Убираем подчеркивание */
+    font-weight: bold; /* Жирный шрифт */
+    margin: 0 10px; /* Расстояние между ссылками */
+    transition: all 0.3s ease; /* Плавная анимация */
+}
+
+.step-links a:hover {
+    color: #0056b3; /* Темно-синий цвет при наведении */
+    text-decoration: underline; /* Подчеркивание */
+}
+
+/* Стили для текущей страницы */
+.current {
+    font-size: 16px; /* Размер шрифта */
+    margin: 0 20px; /* Расстояние от ссылок */
+    font-weight: bold; /* Жирный шрифт */
+    color: #333; /* Темно-серый цвет для текста */
+}
+
+/* Иконки */
+.step-links i {
+    margin: 0 5px; /* Расстояние между иконками и текстом */
+}
