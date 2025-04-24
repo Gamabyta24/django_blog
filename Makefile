@@ -2,7 +2,7 @@ build:
 	./build.sh
 
 render-start:
-    python create_superuser.py
+	python create_superuser.py
 	gunicorn django_blog.wsgi
 
 install:
