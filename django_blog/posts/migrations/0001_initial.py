@@ -11,30 +11,79 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('categories', '0001_initial'),
-        ('tags', '0001_initial'),
+        ("categories", "0001_initial"),
+        ("tags", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Post',
+            name="Post",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=200, verbose_name='Заголовок')),
-                ('slug', models.SlugField(max_length=200, unique=True, verbose_name='URL')),
-                ('content', models.TextField(verbose_name='Содержание')),
-                ('pub_date', models.DateTimeField(default=django.utils.timezone.now, verbose_name='Дата публикации')),
-                ('created_date', models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')),
-                ('updated_date', models.DateTimeField(auto_now=True, verbose_name='Дата обновления')),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='posts', to=settings.AUTH_USER_MODEL, verbose_name='Автор')),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='posts', to='categories.category', verbose_name='Категория')),
-                ('tags', models.ManyToManyField(blank=True, related_name='posts', to='tags.tag', verbose_name='Теги')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=200, verbose_name="Заголовок")),
+                (
+                    "slug",
+                    models.SlugField(max_length=200, unique=True, verbose_name="URL"),
+                ),
+                ("content", models.TextField(verbose_name="Содержание")),
+                (
+                    "pub_date",
+                    models.DateTimeField(
+                        default=django.utils.timezone.now,
+                        verbose_name="Дата публикации",
+                    ),
+                ),
+                (
+                    "created_date",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Дата создания"
+                    ),
+                ),
+                (
+                    "updated_date",
+                    models.DateTimeField(auto_now=True, verbose_name="Дата обновления"),
+                ),
+                (
+                    "author",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="posts",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Автор",
+                    ),
+                ),
+                (
+                    "category",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="posts",
+                        to="categories.category",
+                        verbose_name="Категория",
+                    ),
+                ),
+                (
+                    "tags",
+                    models.ManyToManyField(
+                        blank=True,
+                        related_name="posts",
+                        to="tags.tag",
+                        verbose_name="Теги",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Пост',
-                'verbose_name_plural': 'Посты',
-                'ordering': ['-pub_date'],
+                "verbose_name": "Пост",
+                "verbose_name_plural": "Посты",
+                "ordering": ["-pub_date"],
             },
         ),
     ]

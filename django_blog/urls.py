@@ -14,17 +14,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
-from django.urls import path,include
-from .views import PostListView , UniversalDeleteView
+from django.urls import include, path
+
+from .views import PostListView, UniversalDeleteView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', PostListView.as_view(), name='home'),
-    path('page/<int:page>/', PostListView.as_view(), name='posts_paginated'),
-    path('users/',include('django_blog.users.urls')),
-    path('tags/',include('django_blog.tags.urls')),
-    path('posts/',include('django_blog.posts.urls')),
-    path('categories/',include('django_blog.categories.urls')),
-    path('delete/<str:model_name>/<int:pk>/', UniversalDeleteView.as_view(), name='universal_delete'),
+    path("admin/", admin.site.urls),
+    path("", PostListView.as_view(), name="home"),
+    path("page/<int:page>/", PostListView.as_view(), name="posts_paginated"),
+    path("users/", include("django_blog.users.urls")),
+    path("tags/", include("django_blog.tags.urls")),
+    path("posts/", include("django_blog.posts.urls")),
+    path("categories/", include("django_blog.categories.urls")),
+    path(
+        "delete/<str:model_name>/<int:pk>/",
+        UniversalDeleteView.as_view(),
+        name="universal_delete",
+    ),
 ]
