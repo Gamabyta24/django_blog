@@ -4,7 +4,7 @@ from django_blog.tags.models import Tag
 from django_blog.categories.models import Category
 from django_blog.posts.models import Post
 from django.contrib import messages
-
+from django.core.exceptions import PermissionDenied
 class PostListView(ListView):
     model = Post
     template_name = 'posts/post_list.html'
@@ -41,6 +41,14 @@ class UniversalDeleteView(DeleteView):
 
         return get_object_or_404(model, slug=slug)
 
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        # Проверка только для постов
+        if self.kwargs.get('model_name') == 'post':
+            if obj.author != request.user:
+                messages.error(request, "Вы не являетесь автором этого поста и не можете его удалить.")
+                raise PermissionDenied("Недостаточно прав для удаления.")
+        return super().dispatch(request, *args, **kwargs)
     def post(self, request, *args, **kwargs):
         obj = self.get_object()
         object_name = str(obj)
