@@ -12,7 +12,7 @@ def index(request):
     return render(request, 'posts/index.html')
 
 
-class PostListView(ListView):  # Было: PostDetailView(DetailView)
+class PostListView(ListView):
     model = Post
     template_name = 'posts/post_list.html'
     context_object_name = 'posts'
@@ -41,16 +41,6 @@ class PostListView(ListView):  # Было: PostDetailView(DetailView)
         context['selected_tags'] = self.request.GET.getlist('tags')
         return context
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
-        context['tags'] = Tag.objects.all()
-
-        # Эти переменные нужны для отображения checked-состояний
-        context['selected_categories'] = self.request.GET.getlist('categories')
-        context['selected_tags'] = self.request.GET.getlist('tags')
-
-        return context
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -101,3 +91,15 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, 'Пост успешно удален!')
         return super().delete(request, *args, **kwargs)
+
+
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'posts/post_detail.html'
+    context_object_name = 'post'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        context['tags'] = Tag.objects.all()
+        return context
