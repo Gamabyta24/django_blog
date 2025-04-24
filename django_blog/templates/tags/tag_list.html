@@ -25,7 +25,8 @@
                         {% for tag in tags %}
                             <tr>
                                 <td>
-                                    <a href="{% url 'tag_posts' tag.slug %}">{{ tag.name }}</a>
+                                    <a href="{% url 'home' %}?tags={{ tag.id }}">{{ tag.name }}</a>
+{#                                    <a href="{% url 'post_list' %}?categories={{ category.id }}">#}
                                 </td>
                                 <td>{{ tag.slug }}</td>
                                 <td>{{ tag.posts.count }}</td>
