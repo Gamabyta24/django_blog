@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 {% load django_bootstrap5 %}
-
-{% block title %}{% trans "Registration" %}{% endblock %}
-
+{% block title %}
+    {% trans "Registration" %}
+{% endblock %}
 {% block content %}
     <h1>{% trans "Registration" %}</h1>
-    
     <form method="post">
         {% csrf_token %}
         {% bootstrap_form form %}

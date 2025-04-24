@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
-
 {% block title %}Категории - Django Блог{% endblock %}
-
 {% block content %}
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Категории</h1>
@@ -11,7 +9,6 @@
             </a>
         {% endif %}
     </div>
-    
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
@@ -21,9 +18,7 @@
                             <th>Название</th>
                             <th>URL</th>
                             <th>Количество постов</th>
-                            {% if user.is_authenticated %}
-                                <th>Действия</th>
-                            {% endif %}
+                            {% if user.is_authenticated %}<th>Действия</th>{% endif %}
                         </tr>
                     </thead>
                     <tbody>
@@ -36,10 +31,12 @@
                                 <td>{{ category.posts.count }}</td>
                                 {% if user.is_authenticated %}
                                     <td>
-                                        <a href="{% url 'category_edit' category.slug %}" class="btn btn-sm btn-primary">
+                                        <a href="{% url 'category_edit' category.slug %}"
+                                           class="btn btn-sm btn-primary">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="{% url 'category_delete'  category.slug %}" class="btn btn-sm btn-danger">
+                                        <a href="{% url 'category_delete'  category.slug %}"
+                                           class="btn btn-sm btn-danger">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </td>

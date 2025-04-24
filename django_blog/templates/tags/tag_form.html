@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
-
 {% block title %}
-    {% if form.instance.pk %}Редактирование тега{% else %}Создание тега{% endif %} - Django Блог
+    {% if form.instance.pk %}
+        Редактирование тега
+    {% else %}
+        Создание тега
+    {% endif %}
+    - Django Блог
 {% endblock %}
-
 {% block content %}
     <div class="card">
         <div class="card-header">
-            <h2>{% if form.instance.pk %}Редактирование тега{% else %}Создание тега{% endif %}</h2>
+            <h2>
+                {% if form.instance.pk %}
+                    Редактирование тега
+                {% else %}
+                    Создание тега
+                {% endif %}
+            </h2>
         </div>
         <div class="card-body">
             <form method="POST">
