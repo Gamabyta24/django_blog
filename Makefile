@@ -14,3 +14,6 @@ migrate:
 
 start:
 	python manage.py runserver
+
+superuser:
+    python create_superuser.py
