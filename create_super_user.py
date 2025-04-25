@@ -1,12 +1,12 @@
 import os
 
 import django
-from django.contrib.auth.models import User
 from dotenv import load_dotenv
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_blog.settings')
 django.setup()
 
+from django.contrib.auth.models import User  # noqa: E402
 
 load_dotenv()
 username = os.getenv("USERNAME")
