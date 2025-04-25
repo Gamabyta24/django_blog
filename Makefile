@@ -16,5 +16,6 @@ start:
 	python manage.py runserver
 ruff:
     uv run ruff check .
+
 ruff-fix:
     uv run ruff check . --fix
