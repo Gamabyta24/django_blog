@@ -86,7 +86,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     template_name = "delete_confirmation.html"
-    success_url = reverse_lazy("home")
+    success_url = reverse_lazy("post_home")
 
     def test_func(self):
         post = self.get_object()
