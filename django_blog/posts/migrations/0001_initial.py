@@ -29,10 +29,15 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("title", models.CharField(max_length=200, verbose_name="Заголовок")),
+                (
+                    "title",
+                    models.CharField(max_length=200, verbose_name="Заголовок"),
+                ),
                 (
                     "slug",
-                    models.SlugField(max_length=200, unique=True, verbose_name="URL"),
+                    models.SlugField(
+                        max_length=200, unique=True, verbose_name="URL"
+                    ),
                 ),
                 ("content", models.TextField(verbose_name="Содержание")),
                 (
@@ -50,7 +55,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "updated_date",
-                    models.DateTimeField(auto_now=True, verbose_name="Дата обновления"),
+                    models.DateTimeField(
+                        auto_now=True, verbose_name="Дата обновления"
+                    ),
                 ),
                 (
                     "author",

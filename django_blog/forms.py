@@ -7,5 +7,5 @@ class DeleteForm(forms.Form):
     confirm = forms.BooleanField(
         required=True,
         label="Подтвердите удаление",
-        widget=forms.HiddenInput(),  # Скрываем поле, если не нужно явное подтверждение
+        widget=forms.HiddenInput(),
     )

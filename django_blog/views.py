@@ -1,7 +1,9 @@
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import render
-from django.views.generic import ListView
+from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
+from django.views.generic import ListView, TemplateView
+from django.views.generic.edit import DeleteView
 
 from django_blog.categories.models import Category
 from django_blog.posts.models import Post
@@ -19,11 +21,6 @@ class PostListView(ListView):
         context["categories"] = Category.objects.all()
         context["tags"] = Tag.objects.all()
         return context
-
-
-from django.shortcuts import get_object_or_404
-from django.urls import reverse_lazy
-from django.views.generic.edit import DeleteView
 
 
 class UniversalDeleteView(DeleteView):
@@ -47,7 +44,6 @@ class UniversalDeleteView(DeleteView):
 
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
-        # Проверка только для постов
         if self.kwargs.get("model_name") == "post":
             if obj.author != request.user:
                 messages.error(
@@ -75,7 +71,6 @@ class UniversalDeleteView(DeleteView):
         }
         return success_urls.get(model_name, reverse_lazy("home"))
 
-from django.views.generic import TemplateView
 
 class HomePageView(TemplateView):
     template_name = "home.html"

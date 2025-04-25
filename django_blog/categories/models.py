@@ -5,7 +5,9 @@ from django.urls import reverse
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, unique=True, verbose_name="Название")
+    name = models.CharField(
+        max_length=100, unique=True, verbose_name="Название"
+    )
     slug = models.SlugField(max_length=100, unique=True, verbose_name="URL")
 
     class Meta:

@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block content %}
-<div class="container py-5 text-center">
-    <h1 class="display-4 mb-4">Приветствуем в Django Blog 👋</h1>
-    <p class="lead mb-5">Это уютное место для публикации и чтения интересных постов. Открывай новые идеи, делись мыслями, находи единомышленников.</p>
-
-    <a href="{% url 'post_home' %}" class="btn btn-primary btn-lg mb-3">Перейти к постам</a><br>
-    <a href="{% url 'category_list' %}" class="btn btn-outline-secondary me-2">Категории</a>
-    <a href="{% url 'tag_list' %}" class="btn btn-outline-secondary">Теги</a>
-</div>
+    <div class="container py-5 text-center">
+        <h1 class="display-4 mb-4">Приветствуем в Django Blog 👋</h1>
+        <p class="lead mb-5">
+            Это уютное место для публикации и чтения интересных постов. Открывай новые идеи, делись мыслями, находи единомышленников.
+        </p>
+        <a href="{% url 'post_home' %}" class="btn btn-primary btn-lg mb-3">Перейти к постам</a>
+        <br>
+        <a href="{% url 'category_list' %}"
+           class="btn btn-outline-secondary me-2">Категории</a>
+        <a href="{% url 'tag_list' %}" class="btn btn-outline-secondary">Теги</a>
+    </div>
 {% endblock %}

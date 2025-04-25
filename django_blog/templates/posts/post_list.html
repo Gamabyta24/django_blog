@@ -11,19 +11,20 @@
         </h2>
     {% endif %}
     <div class="row">
-        <!-- Основная колонка с постами -->
         <div class="col-md-8">
             {% for post in posts %}
                 <article class="card mb-4">
                     <div class="card-body">
-                        <h1 class="card-title"><a href="{% url 'post_detail' post.slug %}" class="text-decoration-none">{{ post.title }}</a></h1>
+                        <h1 class="card-title">
+                            <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none">{{ post.title }}</a>
+                        </h1>
                         <div class="mb-3 text-muted">
                             <small>
                                 <i class="fas fa-user me-1"></i> {{ post.author.username }} |
                                 <i class="fas fa-calendar me-1"></i> {{ post.pub_date|date:"d.m.Y H:i" }} |
                                 <i class="fas fa-folder me-1"></i>
                                 {% if post.category and post.category.slug %}
-                                    <a href="{% url 'category_posts' post.category.slug %}">{{ post.category.name }}</a>
+                                    <a>{{ post.category.name }}</a>
                                 {% else %}
                                     <span>{{ post.category.name|default:"Без категории" }}</span>
                                 {% endif %}
@@ -33,16 +34,13 @@
                             {% if post.content|length > 255 %}
                                 {{ post.content|slice:":255" }}... <a href="{% url 'post_detail' post.slug %}">читать дальше</a>
                             {% else %}
-                            {{ post.content|linebreaks }}
+                                {{ post.content|linebreaks }}
                             {% endif %}
                         </div>
                         {% if post.tags.all %}
                             <div class="mb-3">
                                 {% for tag in post.tags.all %}
-                                    <a href="{% url 'tag_posts' tag.slug %}"
-                                       class="badge rounded-pill bg-secondary text-decoration-none me-1">
-                                        #{{ tag.name }}
-                                    </a>
+                                    <a class="badge rounded-pill bg-secondary text-decoration-none me-1">#{{ tag.name }}</a>
                                 {% endfor %}
                             </div>
                         {% endif %}
@@ -62,42 +60,6 @@
                 <p>Пока нет записей.</p>
             {% endfor %}
         </div>
-        {#        <!-- Боковая колонка -->#}
-        {#        <div class="col-md-4">#}
-        {#            <!-- Категории -->#}
-        {#            <div class="card mb-4">#}
-        {#                <div class="card-header">Категории</div>#}
-        {#                <div class="card-body">#}
-        {#                    <ul class="list-group list-group-flush">#}
-        {#                        {% for category in categories %}#}
-        {#                            <li class="list-group-item d-flex justify-content-between align-items-center">#}
-        {#                                <a href="{% url 'category_posts' category.slug %}"#}
-        {#                                   class="text-decoration-none">{{ category.name }}</a>#}
-        {#                                <span class="badge rounded-pill bg-primary">{{ category.posts.count }}</span>#}
-        {#                            </li>#}
-        {#                        {% empty %}#}
-        {#                            <li class="list-group-item">Нет доступных категорий</li>#}
-        {#                        {% endfor %}#}
-        {#                    </ul>#}
-        {#                </div>#}
-        {#            </div>#}
-        {#            <!-- Популярные теги -->#}
-        {#            <div class="card">#}
-        {#                <div class="card-header">Популярные теги</div>#}
-        {#                <div class="card-body">#}
-        {#                    <div class="d-flex flex-wrap gap-2">#}
-        {#                        {% for tag in tags %}#}
-        {#                            <a href="{% url 'tag_posts' tag.slug %}"#}
-        {#                               class="badge rounded-pill bg-secondary text-decoration-none">#}
-        {#                                #{{ tag.name }} ({{ tag.posts.count }})#}
-        {#                            </a>#}
-        {#                        {% empty %}#}
-        {#                            <p>Нет доступных тегов</p>#}
-        {#                        {% endfor %}#}
-        {#                    </div>#}
-        {#                </div>#}
-        {#            </div>#}
-        {#        </div>#}
         <div class="col-md-4">
             <form method="get" class="border p-3 rounded bg-light">
                 <h5>Категории</h5>

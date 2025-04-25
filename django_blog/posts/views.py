@@ -1,6 +1,5 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
@@ -11,10 +10,7 @@ from django_blog.tags.models import Tag
 from .forms import PostForm
 from .models import Post
 
-
 # Create your views here.
-def index(request):
-    return render(request, "posts/index.html")
 
 
 class PostListView(ListView):
@@ -26,12 +22,10 @@ class PostListView(ListView):
     def get_queryset(self):
         queryset = Post.objects.all().order_by("-created_date")
 
-        # Фильтрация по категориям
         categories = self.request.GET.getlist("categories")
         if categories:
             queryset = queryset.filter(category__id__in=categories)
 
-        # Фильтрация по тегам
         tags = self.request.GET.getlist("tags")
         if tags:
             queryset = queryset.filter(tags__id__in=tags).distinct()

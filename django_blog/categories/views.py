@@ -1,11 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, ListView, UpdateView
-
-from django_blog.posts.models import Post
-from django_blog.tags.models import Tag
+from django.views.generic import CreateView, ListView, UpdateView
 
 from .forms import CategoryForm
 from .models import Category
@@ -18,7 +14,6 @@ class CategoryListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["tags"] = Tag.objects.all()
         return context
 
 
@@ -42,22 +37,3 @@ class CategoryUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         messages.success(self.request, "Категория успешно обновлена!")
         return super().form_valid(form)
-
-
-class CategoryPostListView(ListView):
-    model = Post
-    template_name = "posts/post_list.html"
-    context_object_name = "posts"
-    paginate_by = 5
-
-    def get_queryset(self):
-        self.category = get_object_or_404(Category, slug=self.kwargs.get("slug"))
-        return Post.objects.filter(category=self.category).order_by("-pub_date")
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["categories"] = Category.objects.all()
-        context["tags"] = Tag.objects.all()
-        context["current_category"] = self.category
-        context["title"] = f"Посты в категории: {self.category.name}"
-        return context

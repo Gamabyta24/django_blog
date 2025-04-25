@@ -30,7 +30,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "slug",
-                    models.SlugField(max_length=100, unique=True, verbose_name="URL"),
+                    models.SlugField(
+                        max_length=100, unique=True, verbose_name="URL"
+                    ),
                 ),
             ],
             options={
