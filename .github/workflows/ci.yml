@@ -1,0 +1,28 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test-and-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Клонировать репозиторий
+        uses: actions/checkout@v3
+
+      - name: Установить Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Установить uv
+        run: pip install uv
+
+      - name: Установить зависимости
+        run: uv sync
+
+      - name: Проверка кода Ruff
+        run: uv run ruff check .
+
+      - name: Запуск тестов Django
+        run: python manage.py test
