@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
@@ -23,7 +24,7 @@ class PostListView(ListView):
         return context
 
 
-class UniversalDeleteView(DeleteView):
+class UniversalDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "delete_confirmation.html"
 
     def get_object(self, queryset=None):
